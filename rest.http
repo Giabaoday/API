@@ -1,0 +1,59 @@
+GET http://localhost:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA1NTcxMzAsImV4cCI6MTczMDU1NzE0NSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.Ea2abGVS9hm-9cMmX0LdcfnQbJGBy5AKu7VYTo1n3L8
+
+### LOGIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "22520120@gm.uit.edu.vn",
+    "password": "1234"
+}
+
+### REGISTER
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username" : "giabao52004",
+    "email": "giaba12o@gm.uit.edu.vn",
+    "password": "1234"
+}
+
+### REFRESH TOKEN
+POST http://localhost:3000/auth/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA1NTU5NjMsImV4cCI6MTczMDU1NTk5MywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.pe6pFJ0nuogPQKdHhZ0FiPd61CmGqAMhflUf2-2y9Gc"
+}
+
+### LOGOUT
+DELETE  http://localhost:3000/auth/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA1NTcxMzAsImV4cCI6MTc2MjExNDczMCwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.f4fVJX7Nax8ba10VKaPiiU7aXu9kIf6v46vt0tsbysk"
+}
+
+###
+GET http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2OTQ0MTIsImV4cCI6MTczMDc4MDgxMiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ByoZbBm1v5fYrBGfx8QGX8GcQnfYFhG7Tl-ZnHhLHeI
+
+###
+GET http://localhost:3000/user/getId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2OTQ0MTIsImV4cCI6MTczMDc4MDgxMiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ByoZbBm1v5fYrBGfx8QGX8GcQnfYFhG7Tl-ZnHhLHeI
+Content-Type: application/json
+
+{
+    "email": "22520120@gm.uit.edu.vn"
+}
+
+###
+PATCH http://localhost:3000/user/update/6725d3e3f0fb3cfd86008cf7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2OTQ0MTIsImV4cCI6MTczMDc4MDgxMiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ByoZbBm1v5fYrBGfx8QGX8GcQnfYFhG7Tl-ZnHhLHeI
+Content-Type: application/json
+
+{
+    "password": "123456"
+}

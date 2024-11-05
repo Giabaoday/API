@@ -1,8 +1,11 @@
 const createError = require('http-errors')
 const User = require('../Models/User.model')
-const { authRegisterSchema, authLoginSchema } = require('../helpers/validation_schema')
+const { authRegisterSchema, authLoginSchema, passwordSchema, emailSchema } = require('../helpers/validation_schema')
 const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/jwt_helper')
 const client = require('../helpers/init_redis')
+const nodemailer = require('nodemailer')
+const crypto = require('crypto')
+const bcrypt = require('bcrypt')
 
 module.exports = {
     register: async (req, res, next) => {
@@ -73,5 +76,101 @@ module.exports = {
             next(error)
         }
     },
+    forgotPassword: async (req, res, next) => {
+        try {
+            const email = await emailSchema.validateAsync(req.body)
+            const user = await User.findOne({ email: email.email })
+            if (!user) throw createError.NotFound('User not registered')
 
+            // Generate OTP
+            const otp = crypto.randomInt(100000, 999999).toString()
+            const otpExpiry = Date.now() + 10*60*1000 // OTP expires in 10 minutes
+
+            // Store OTP in Redis with expiry
+            await client.setEx(
+                `otp:${email.email}`,
+                600, // 10 minutes in seconds
+                JSON.stringify({
+                    otp: otp,
+                    expiry: otpExpiry
+                })
+            )
+
+            // Send email with OTP
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASSWORD
+                }
+            })
+
+            await transporter.sendMail({
+                from: process.env.EMAIL_USER,
+                to: email.email,
+                subject: 'Password Reset OTP',
+                text: `Your OTP for password reset is: ${otp}. This OTP will expire in 10 minutes.`
+            })
+
+            res.send({ message: 'OTP sent to email' })
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    verifyOTP: async (req, res, next) => {
+        try {
+            const { email, otp } = req.body
+
+            // Get stored OTP data
+            const storedOTPData = await client.get(`otp:${email}`)
+            if (!storedOTPData) throw createError.BadRequest('OTP expired or invalid')
+
+            const { otp: storedOTP, expiry } = JSON.parse(storedOTPData)
+
+            // Check if OTP matches and not expired
+            if (otp !== storedOTP) throw createError.BadRequest('Invalid OTP')
+            if (Date.now() > expiry) throw createError.BadRequest('OTP expired')
+
+            // Generate temporary token for password reset
+            const resetToken = crypto.randomBytes(32).toString('hex')
+            await client.setEx(
+                `reset:${email}`,
+                300, // 5 minutes expiry
+                resetToken
+            )
+
+            res.send({ resetToken })
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    resetPassword: async (req, res, next) => {
+        try {
+            const { email, resetToken, newPassword } = req.body
+
+            // Verify reset token
+            const storedToken = await client.get(`reset:${email}`)
+            if (!storedToken || storedToken !== resetToken) {
+                throw createError.BadRequest('Invalid or expired reset token')
+            }
+
+            // Update password
+            const user = await User.findOne({ email })
+            if (!user) throw createError.NotFound('User not found')
+
+            
+            // Update user password
+            user.password = newPassword
+            await user.save()
+
+            // Clear reset token
+            await client.del(`reset:${email}`)
+
+            res.send({ message: 'Password updated successfully' })
+        } catch (error) {
+            next(error)
+        }
+    }
 }

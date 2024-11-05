@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "email": "22520120@gm.uit.edu.vn",
-    "password": "1234"
+    "password": "cubao123"
 }
 
 ### REGISTER
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2OTQ0MTIsImV4cCI6MTczMDc4MDgxMiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ByoZbBm1v5fYrBGfx8QGX8GcQnfYFhG7Tl-ZnHhLHeI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA3OTA1NzcsImV4cCI6MTczMDg3Njk3NywiYXVkIjoiNjcyNWRhZTA2ZmQ2ZmRhYTc0ODk2MjQ2IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.tm0tr2yCWD1YryG89vn2F5qNIV7CiL3wwonu466-wUQ
 
 ###
 GET http://localhost:3000/user/getId
@@ -56,4 +56,35 @@ Content-Type: application/json
 
 {
     "password": "123456"
+}
+
+###
+GET http://54.255.239.22:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2OTQ0MTIsImV4cCI6MTczMDc4MDgxMiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ByoZbBm1v5fYrBGfx8QGX8GcQnfYFhG7Tl-ZnHhLHeI
+
+###
+POST http://localhost:3000/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": "22520120@gm.uit.edu.vn"
+}
+
+###
+POST http://localhost:3000/auth/verify-otp
+Content-Type: application/json
+
+{
+    "email": "22520120@gm.uit.edu.vn",
+    "otp": "192883"
+}
+
+###
+POST http://localhost:3000/auth/reset-password
+Content-Type: application/json
+
+{
+    "email": "22520120@gm.uit.edu.vn",
+    "resetToken": "d360e9c2408bb7dc29e6215ef9df766ba8ad6f93b12aa06f47e469f3791c0b5e",
+    "newPassword": "cubao123"
 }

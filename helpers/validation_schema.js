@@ -11,7 +11,7 @@ const authLoginSchema = Joi.object({
     password: Joi.string().min(4).required()
 })
 
-const getUserSchema = Joi.object({
+const emailSchema = Joi.object({
     email: Joi.string().email().lowercase().required(),
 })
 
@@ -26,6 +26,6 @@ const passwordSchema = Joi.object({
 module.exports = {
     authRegisterSchema,
     authLoginSchema,
-    getUserSchema,
+    emailSchema,
     passwordSchema
 }

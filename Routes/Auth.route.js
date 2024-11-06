@@ -16,4 +16,6 @@ router.post('/verify-otp', AuthController.verifyOTP)
 
 router.post('/reset-password', AuthController.resetPassword)
 
+router.post('/google', AuthController.googleSignIn)
+
 module.exports = router

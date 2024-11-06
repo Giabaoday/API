@@ -6,6 +6,8 @@ const client = require('../helpers/init_redis')
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
 const bcrypt = require('bcrypt')
+const { OAuth2Client } = require('google-auth-library');
+const ggclient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 module.exports = {
     register: async (req, res, next) => {
@@ -171,6 +173,66 @@ module.exports = {
             res.send({ message: 'Password updated successfully' })
         } catch (error) {
             next(error)
+        }
+    },
+    googleSignIn: async (req, res, next) => {
+        try {
+            const { credential } = req.body; // Get ID token from request
+            
+            if (!credential) {
+                throw createError.BadRequest('ID Token is required');
+            }
+    
+            // Verify Google ID token
+            const ticket = await ggclient.verifyIdToken({
+                idToken: credential,
+                audience: process.env.GOOGLE_CLIENT_ID
+            });
+    
+            const payload = ticket.getPayload();
+            
+            // Extract user information from payload
+            const { email, name, picture, email_verified } = payload;
+    
+            if (!email_verified) {
+                throw createError.Unauthorized('Email not verified with Google');
+            }
+    
+            // Check if user exists
+            let user = await User.findOne({ email: email });
+    
+            if (!user) {
+                // Create new user if not exists
+                user = new User({
+                    username: name,
+                    email: email,
+                    // Generate random password since we're using Google Sign In
+                    password: require('crypto').randomBytes(16).toString('hex')
+                });
+                await user.save();
+            }
+    
+            // Generate tokens
+            const accessToken = await signAccessToken(user.id);
+            const refreshToken = await signRefreshToken(user.id);
+    
+            res.json({
+                status: 'success',
+                message: 'Successfully signed in with Google',
+                data: {
+                    user: {
+                        id: user.id,
+                        name: user.username,
+                        email: user.email
+                    },
+                    accessToken,
+                    refreshToken
+                }
+            });
+    
+        } catch (error) {
+            console.error('Google sign in error:', error);
+            next(error);
         }
     }
 }

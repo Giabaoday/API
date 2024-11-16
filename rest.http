@@ -2,7 +2,7 @@ GET http://localhost:3000
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA1NTcxMzAsImV4cCI6MTczMDU1NzE0NSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.Ea2abGVS9hm-9cMmX0LdcfnQbJGBy5AKu7VYTo1n3L8
 
 ### LOGIN
-POST http://localhost:3000/auth/login
+POST http://47.129.31.47:3000/auth/login
 Content-Type: application/json
 
 {
@@ -90,9 +90,37 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/auth/google
+POST http://47.129.31.47:3000/auth/google
 Content-Type: application/json
 
 {
-  "credential": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzNzg0MjMxMzA1NTEtcGhzazVucmM1dWVwdTkybHQ0MmYyZjZycGNpa3NuZXQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzNzg0MjMxMzA1NTEtNWtubGs0aHBnMzA1ajZodmJoNHBrZWRyaWxubzhiMTUuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI4MjcwMTc5MTczNzczMDIyMDQiLCJlbWFpbCI6ImNvY2Fjb2xhc3Rpbmc1MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibm9uY2UiOiJGUFd6Z2RFblF5VlZGekdYZitMMit2ZEFFTEhESFZ2NzJmZUJER0lDMk5zPVxuIiwibmFtZSI6IkdpYSBC4bqjbyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMMUlGMnRHaEpXQk1lbDJhTEV5OEEyOHVVM0FLLU5aN0s3ZWVLZzF6SDM5MEc5RGc9czk2LWMiLCJnaXZlbl9uYW1lIjoiR2lhIiwiZmFtaWx5X25hbWUiOiJC4bqjbyIsImlhdCI6MTczMDg3NzcxMSwiZXhwIjoxNzMwODgxMzExfQ.hw559kKrf4TYu-xQ95bgjGOKtCWv2et4Mx51itw0laCHoP10iLzcC1BIPIC-5LtrbySBseZKmFPEs3WlbdL6Isqpu2vxm_JH68_A-s3ymKCBVdGLOgNbn9-fHQ6ap-_5X5sGV9I-Fb8Jj-nSHJ9XppdpQzzB0PKikQmW40qPHUaCCas8ZfaVokHo8tMhJyDrPe2wDwoq9gWpGFFqok3tdiSuSp_DlzrVtXClgjTacFbmiAPUoxD6HkYmhqbnJhGqUkf_F4tmzImn-8UwbaQGdcUdxNX-KqFE_hlKZaNqilBHFWKeSuRdTAi7uwRR-qoM9TAvOl3CWNo8EGQiVmhLoQ"
+  "credential": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzNzg0MjMxMzA1NTEtcGhzazVucmM1dWVwdTkybHQ0MmYyZjZycGNpa3NuZXQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzNzg0MjMxMzA1NTEtNWtubGs0aHBnMzA1ajZodmJoNHBrZWRyaWxubzhiMTUuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI4MjcwMTc5MTczNzczMDIyMDQiLCJlbWFpbCI6ImNvY2Fjb2xhc3Rpbmc1MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibm9uY2UiOiJzTFhLaktvVEZ6a2o0NWV3YWRqUzQ4Yy80cytrK0pqWkU5VkEzUk1XTy9jPVxuIiwibmFtZSI6IkdpYSBC4bqjbyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMMUlGMnRHaEpXQk1lbDJhTEV5OEEyOHVVM0FLLU5aN0s3ZWVLZzF6SDM5MEc5RGc9czk2LWMiLCJnaXZlbl9uYW1lIjoiR2lhIiwiZmFtaWx5X25hbWUiOiJC4bqjbyIsImlhdCI6MTczMTA4NjA0NiwiZXhwIjoxNzMxMDg5NjQ2fQ.JR1qpeiOAIwFowwR2xVDpQZOU7Go7XA4b3N-4DOutcjf1-sKxCpjgn7NjiOQj8cbpflzbdPbtxZqX45eIKrV8MrF6LwV7aPRFggC4HZdP7jUinJjm9wRbVTHnLV6yV6Kas5gFdFLHxcUcouDrgknWwfikxh699sFChr-EmEdRdvX-svHvK7AUus0tBZ1TIagKzjTPGyh3AHZKhwkgEpYgLPhTCvMv0_KxsgCMIw5j6TC9DgaUaAByUypdFqcGhZXSBmZPXtrC8yizW22MfH69bPv6ih8r0FR8My33miacTlj3uhpI7EcW0UqPhLdls2IbL6pllWjQA9MDh_HPgFkwQ"
 }
+
+###
+POST http://localhost:3000/map/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzE3MjcyNDksImV4cCI6MTczMTgxMzY0OSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.zp_dpDAROkf4PEH_lRk6nDy1N_EoL673q4lJ4E9WGes
+
+{
+    "location": {
+        "address": "Đại học Bách Khoa, ĐHQG-HCM",
+        "coordinates": {
+            "latitude": 10.880468,
+            "longitude": 106.805747
+        }
+    },
+    "description": {
+        "dimension": "Average",
+        "depth": "Shallow",
+        "shape": "Jagged"
+    },
+    "severity": {
+        "level": "High",
+        "causesDamage": true
+    }
+}
+
+###
+GET http://localhost:3000/map/getAllPothole
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEzODE4NzIsImV4cCI6MTczMTQ2ODI3MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.p_KvWqXXZeJlwu7XHjtiVfgZpvsz8YsyyOrA0EbsQ5k

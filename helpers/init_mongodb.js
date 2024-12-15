@@ -1,3 +1,4 @@
+const { error } = require('@hapi/joi/lib/base');
 const mongoose = require('mongoose')
 
 mongoose
@@ -16,7 +17,7 @@ mongoose.connection.on('connected', () => {
 })
 
 mongoose.connection.on('error', () => {
-    console.log(err.message)
+    console.log(error.message)
 })
 
 mongoose.connection.on('disconnected', () => {

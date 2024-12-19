@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "email": "22520120@gm.uit.edu.vn",
-    "password": "cubao123"
+    "password": "123456"
 }
 
 ### REGISTER
@@ -123,12 +123,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxO
 
 
 ### Dashboard stats
-GET http://localhost:3000/dashboard/stats
+GET http://47.129.31.47:3000/dashboard/stats
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 
 
 ### Dashboard chart
-GET http://localhost:3000/dashboard/dailyChart
+GET http://47.129.31.47:3000/dashboard/dailyChart
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjA1NDIsImV4cCI6MTczNDYwNjk0MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.hEB0c4XMM9qRHwhi8LyIHEVrC0WDlj8UgnIXkpryIIY
 Content-Type: application/json
 
@@ -142,8 +142,8 @@ GET http://47.129.31.47:3000/map/getAllPothole
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQyNDc1MzEsImV4cCI6MTczNDMzMzkzMSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.jxcdQgS5beblUoE0fUA87_5M6xxzFTN3Bv5b2CjPUdQ
 
 ### UpdateDistance
-PATCH http://localhost:3000/user/updateDistance
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ0OTY5MDUsImV4cCI6MTczNDU4MzMwNSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.V2w6O4d01TA_qHqmNV_4VKKD2vmKK1e5a9GGfn3KxvE
+PATCH http://47.129.31.47:3000/user/updateDistance
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 Content-Type: application/json
 
 {
@@ -152,13 +152,15 @@ Content-Type: application/json
 
 ### Setting
 PATCH http://localhost:3000/user/settings
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 Content-Type: application/json
 
 {
     "username": "giabao5204",
-    "birthday": "2004-02-05",
-    "country": "Vietnam"
+    "birthday": "2004-02-05", 
+    "country": "Vietnam", 
+    "currentPassword": "123456",
+    "newPassword": "123456" 
 }
 
 ### Add notification

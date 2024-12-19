@@ -1,7 +1,7 @@
 const createError = require('http-errors')
 const User = require('../Models/User.model')
 const { emailSchema, passwordSchema, updateUserDistanceSchema, updateSettingsSchema } = require('../helpers/validation_schema')
-
+const bcrypt = require('bcrypt')
 
 module.exports = {
     getAllUser: async (req, res, next) => {

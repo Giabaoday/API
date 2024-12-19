@@ -43,7 +43,7 @@ module.exports = {
             
             const updatedUser = await User.findByIdAndUpdate(
                 userId,
-                { distance_traveled: validData.distance_traveled },
+                { $inc: { distance_traveled: validData.distance_traveled } },
                 { new: true }  // Trả về document sau khi update
             )
     

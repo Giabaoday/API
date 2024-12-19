@@ -41,7 +41,7 @@ GET http://47.129.31.47:3000/user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2MDcwNzIsImV4cCI6MTczNDY5MzQ3MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.dvi-6U3z4c1zf8jPes0pNW8wJEry_PKDQYJntI9ZpjU
 
 ###
-GET http://localhost:3000/user/me
+GET http://47.129.31.47:3000/user/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2MDcwNzIsImV4cCI6MTczNDY5MzQ3MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.dvi-6U3z4c1zf8jPes0pNW8wJEry_PKDQYJntI9ZpjU
 
 ###
@@ -102,13 +102,13 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/map/addPothole
+POST http://47.129.31.47:3000/map/addPothole
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 
 {
     "location": {
-        "address": "test1",
+        "address": "test2",
         "coordinates": {
             "latitude": 10.880467,
             "longitude": 106.805746

@@ -98,13 +98,13 @@ Content-Type: application/json
 }
 
 ###
-POST http://47.129.31.47:3000/map/addPothole
+POST http://localhost:3000/map/addPothole
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 
 {
     "location": {
-        "address": "test",
+        "address": "test1",
         "coordinates": {
             "latitude": 10.880467,
             "longitude": 106.805746
@@ -151,14 +151,11 @@ Content-Type: application/json
 }
 
 ### Setting
-PATCH http://localhost:3000/user/settings
+PATCH http://47.129.31.47:3000/user/settings
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5MzcsImV4cCI6MTczNDY3MDMzNywiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.GrmBaEs9SmMY_EdAjeYS7wfWhFxO8r5x2jrdf2jq4Ng
 Content-Type: application/json
 
 {
-    "username": "giabao5204",
-    "birthday": "2004-02-05", 
-    "country": "Vietnam", 
     "currentPassword": "123456",
     "newPassword": "123456" 
 }

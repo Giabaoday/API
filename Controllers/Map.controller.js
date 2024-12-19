@@ -4,6 +4,8 @@ const {createPotholeSchema} = require("../helpers/validation_schema")
 const MBTiles = require('@mapbox/mbtiles')
 const path = require('path')
 const { promisify } = require('util')
+const User = require('../Models/User.model')
+const Notification = require('../Models/Notification.model')
 
 let mbtilesInstance = null;
 const getMBTiles = async () => {
@@ -45,6 +47,24 @@ module.exports = {
 
             const pothole = new Pothole(potholeData)
             const savedPothole = await pothole.save()
+
+            // Tạo thông báo cho tất cả users
+            const users = await User.find()
+            const notifications = users.map(user => ({
+                userId: user._id,
+                title: 'New Pothole Reported',
+                message: `A new ${result.severity.level} severity pothole has been reported at ${result.location.address}`,
+                type: 'NEW_POTHOLE',
+                data: {
+                    potholeId: savedPothole._id,
+                    severity: result.severity.level,
+                    location: result.location
+                }
+            }))
+
+            // Lưu tất cả thông báo
+            await Notification.insertMany(notifications)
+
             res.send(savedPothole)
 
         } catch (error) {

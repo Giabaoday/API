@@ -7,10 +7,10 @@ module.exports = {
         try {
             // Get user ID from token
             const userId = req.payload.aud;
-
+    
             // Get total count of all potholes
             const totalPotholes = await Pothole.countDocuments();
-
+    
             // Count potholes by severity
             const severityCounts = await Pothole.aggregate([
                 {
@@ -20,7 +20,13 @@ module.exports = {
                     }
                 }
             ]);
-
+    
+            // Count potholes reported by current user that caused damage
+            const userFalls = await Pothole.countDocuments({ 
+                reportedBy: userId,
+                'severity.causesDamage': true 
+            });
+    
             // Get user's distance traveled
             const user = await User.findById(userId);
             if (!user) throw createError.NotFound('User not found');
@@ -29,6 +35,7 @@ module.exports = {
                 status: 'success',
                 data: {
                     total: totalPotholes,
+                    falls: userFalls, // số pothole gây damage do user báo cáo
                     bySeverity: severityCounts.reduce((acc, curr) => {
                         acc[curr._id] = curr.count;
                         return acc;

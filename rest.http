@@ -37,8 +37,12 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA3OTA1NzcsImV4cCI6MTczMDg3Njk3NywiYXVkIjoiNjcyNWRhZTA2ZmQ2ZmRhYTc0ODk2MjQ2IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.tm0tr2yCWD1YryG89vn2F5qNIV7CiL3wwonu466-wUQ
+GET http://47.129.31.47:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2MDcwNzIsImV4cCI6MTczNDY5MzQ3MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.dvi-6U3z4c1zf8jPes0pNW8wJEry_PKDQYJntI9ZpjU
+
+###
+GET http://localhost:3000/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2MDcwNzIsImV4cCI6MTczNDY5MzQ3MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.dvi-6U3z4c1zf8jPes0pNW8wJEry_PKDQYJntI9ZpjU
 
 ###
 GET http://localhost:3000/user/getId
@@ -161,45 +165,39 @@ Content-Type: application/json
 }
 
 ### Add notification
-POST http://localhost:3000/notification/create
+POST http://47.129.31.47:3000/notification/create
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 Content-Type: application/json
 
 {
-    "title": "Pothole?",
-    "message": "Do you want to add a new pothole this location?",
-    "type": "NEW_POTHOLE",
-    "data": {
-        "coordinates": {
-            "latitude": 10.880468,
-            "longitude": 106.805747
-        }
-    }
+    "title": "Thank you",
+    "message": "Thank you for your donate",
+    "type": "SYSTEM"
 }
 
 ### Get all notification
-GET http://localhost:3000/notification/getUserNotifications
+GET http://47.129.31.47:3000/notification/getUserNotifications
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 
 ### Mark notification as read
-PATCH http://localhost:3000/notification/markAsRead
+PATCH http://47.129.31.47:3000/notification/markAsRead
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 Content-Type: application/json
 
 {
-    "notificationIds": "6762c9f84d2feef3d9abe250"
+    "notificationIds": "6763b22cba59849a62249a9b"
 }
 
 ### Delete notification
-DELETE http://localhost:3000/notification/delete
+DELETE http://47.129.31.47:3000/notification/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 Content-Type: application/json
 
 {
-    "notificationIds": "6762c9f84d2feef3d9abe250"
+    "notificationIds": "6763b22cba59849a62249a9b"
 }
-### Delete notification
-DELETE http://localhost:3000/notification/delete
+### Delete all notification
+DELETE http://47.129.31.47:3000/notification/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 Content-Type: application/json
 

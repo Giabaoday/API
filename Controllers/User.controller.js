@@ -4,6 +4,16 @@ const { emailSchema, passwordSchema, updateUserDistanceSchema, updateSettingsSch
 const bcrypt = require('bcrypt')
 
 module.exports = {
+    getCurrentUser: async (req, res, next) => {
+        try {
+            const userId = req.payload.aud
+            const user = await User.findById(userId, { __v: 0, password: 0 })
+            if (!user) throw createError.NotFound("User not registered")
+            res.send(user)
+        } catch (error) {
+            next(error)
+        }
+    },
     getAllUser: async (req, res, next) => {
         try {
             const result = await User.find({}, {__v: 0})

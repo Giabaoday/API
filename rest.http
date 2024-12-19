@@ -76,7 +76,7 @@ Content-Type: application/json
 
 {
     "email": "22520120@gm.uit.edu.vn",
-    "otp": "192883"
+    "otp": "173811"
 }
 
 ###
@@ -85,7 +85,7 @@ Content-Type: application/json
 
 {
     "email": "22520120@gm.uit.edu.vn",
-    "resetToken": "d360e9c2408bb7dc29e6215ef9df766ba8ad6f93b12aa06f47e469f3791c0b5e",
+    "resetToken": "61f921cf05d96f16d5ea366694c3348b409732e3c638fd0e2712df619a7297aa",
     "newPassword": "cubao123"
 }
 
@@ -98,16 +98,16 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/map/add
+POST http://47.129.31.47:3000/map/addPothole
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzE3MjcyNDksImV4cCI6MTczMTgxMzY0OSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.zp_dpDAROkf4PEH_lRk6nDy1N_EoL673q4lJ4E9WGes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
 
 {
     "location": {
-        "address": "Đại học Bách Khoa, ĐHQG-HCM",
+        "address": "test",
         "coordinates": {
-            "latitude": 10.880468,
-            "longitude": 106.805747
+            "latitude": 10.880467,
+            "longitude": 106.805746
         }
     },
     "description": {
@@ -121,6 +121,88 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzE3MjcyN
     }
 }
 
+
+### Dashboard stats
+GET http://localhost:3000/dashboard/stats
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ0OTUwNzksImV4cCI6MTczNDU4MTQ3OSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.ON_V0m0DAngn0Ea3uC8EXM1fdAtxQ17mxd08u37Hq-k
+
+### Dashboard chart
+GET http://localhost:3000/dashboard/dailyChart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjA1NDIsImV4cCI6MTczNDYwNjk0MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.hEB0c4XMM9qRHwhi8LyIHEVrC0WDlj8UgnIXkpryIIY
+Content-Type: application/json
+
+{
+    "startDate": "2024-11-11",
+    "endDate": "2024-12-18"
+}
+
 ###
 GET http://47.129.31.47:3000/map/getAllPothole
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzE3NDQ1ODEsImV4cCI6MTczMTgzMDk4MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.l_P0sohNnVmTk2oaG_ttG3PYYxlMFsKe5VV6JsRLziw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQyNDc1MzEsImV4cCI6MTczNDMzMzkzMSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.jxcdQgS5beblUoE0fUA87_5M6xxzFTN3Bv5b2CjPUdQ
+
+### UpdateDistance
+PATCH http://localhost:3000/user/updateDistance
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ0OTY5MDUsImV4cCI6MTczNDU4MzMwNSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.V2w6O4d01TA_qHqmNV_4VKKD2vmKK1e5a9GGfn3KxvE
+Content-Type: application/json
+
+{
+    "distance_traveled": 100
+}
+
+### Setting
+PATCH http://localhost:3000/user/settings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Content-Type: application/json
+
+{
+    "username": "giabao5204",
+    "birthday": "2004-02-05",
+    "country": "Vietnam"
+}
+
+### Add notification
+POST http://localhost:3000/notification/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Content-Type: application/json
+
+{
+    "title": "Pothole?",
+    "message": "Do you want to add a new pothole this location?",
+    "type": "NEW_POTHOLE",
+    "data": {
+        "coordinates": {
+            "latitude": 10.880468,
+            "longitude": 106.805747
+        }
+    }
+}
+
+### Get all notification
+GET http://localhost:3000/notification/getUserNotifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+
+### Mark notification as read
+PATCH http://localhost:3000/notification/markAsRead
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Content-Type: application/json
+
+{
+    "notificationIds": "6762c9f84d2feef3d9abe250"
+}
+
+### Delete notification
+DELETE http://localhost:3000/notification/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Content-Type: application/json
+
+{
+    "notificationIds": "6762c9f84d2feef3d9abe250"
+}
+### Delete notification
+DELETE http://localhost:3000/notification/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjcxOTEsImV4cCI6MTczNDYxMzU5MSwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rFLa0Lkze1mSlgP7D26x4jahMV5DYBQi1-_ILnSZqGA
+Content-Type: application/json
+
+{
+    "deleteAll": true
+}

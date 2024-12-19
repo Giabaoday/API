@@ -24,6 +24,16 @@ const UserSchema = new Schema({
     country: {
         type: String,
         required: false
+    },
+    falls: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    distance_traveled: {
+        type: Number,
+        default: 0,
+        required: false
     }
 })
 

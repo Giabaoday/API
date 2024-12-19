@@ -1,8 +1,7 @@
 const createError = require('http-errors')
 const User = require('../Models/User.model')
-const { emailSchema, passwordSchema } = require('../helpers/validation_schema')
-const { signAccessToken, signRefreshToken, verifyRefreshToken } = require('../helpers/jwt_helper')
-const client = require('../helpers/init_redis')
+const { emailSchema, passwordSchema, updateUserDistanceSchema, updateSettingsSchema } = require('../helpers/validation_schema')
+
 
 module.exports = {
     getAllUser: async (req, res, next) => {
@@ -27,18 +26,84 @@ module.exports = {
         }
     },
 
-    updateUser: async (req, res, next) => {
+    updateUserDistance: async (req, res, next) => {
         try {
-            const id = req.params.id
-            const update = req.body
-            const option = {new: true}
-            await passwordSchema.validateAsync(req.body)
-
-            const user = await User.findByIdAndUpdate(id, update, option)
-            if (!user) throw createError.NotFound("User not registered")
-            res.send(user)
-
+            const userId = req.payload.aud
+            const validData = await updateUserDistanceSchema.validateAsync(req.body)
+            
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { distance_traveled: validData.distance_traveled },
+                { new: true }  // Trả về document sau khi update
+            )
+    
+            if (!updatedUser) throw createError.NotFound("User not registered")
+    
+            res.json({
+                status: 'success',
+                data: {
+                    distance_traveled: updatedUser.distance_traveled
+                }
+            })
+    
         } catch (error) {
+            if (error.isJoi === true) error.status = 422
+            next(error)
+        }
+    },
+
+    updateSettings: async (req, res, next) => {
+        try {
+            const userId = req.payload.aud
+            
+            // Validate input data
+            const validData = await updateSettingsSchema.validateAsync(req.body)
+            
+            // Tạo object chứa các field cần update
+            const updateFields = {}
+            if (validData.username) updateFields.username = validData.username
+            if (validData.birthday) updateFields.birthday = validData.birthday
+            if (validData.country) updateFields.country = validData.country
+    
+            // Find user
+            const user = await User.findById(userId)
+            if (!user) throw createError.NotFound("User not registered")
+    
+            // If user wants to change password
+            if (validData.newPassword) {
+                // Verify current password
+                const isValidPassword = await user.isValidPassword(validData.currentPassword)
+                if (!isValidPassword) {
+                    throw createError.Unauthorized('Current password is incorrect')
+                }
+    
+                // Hash new password
+                const salt = await bcrypt.genSalt(10)
+                const hashedPassword = await bcrypt.hash(validData.newPassword, salt)
+                updateFields.password = hashedPassword
+            }
+    
+            // Update user using findByIdAndUpdate thay vì save()
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { $set: updateFields },
+                { new: true } // Trả về document sau khi update
+            )
+            
+            const formattedBirthday = updatedUser.birthday ? 
+                updatedUser.birthday.toISOString().split('T')[0] : null
+    
+            res.json({
+                status: 'success',
+                data: {
+                    username: updatedUser.username,
+                    birthday: formattedBirthday,
+                    country: updatedUser.country
+                }
+            })
+    
+        } catch (error) {
+            if (error.isJoi === true) error.status = 422
             next(error)
         }
     }

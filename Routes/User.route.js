@@ -5,6 +5,7 @@ const UserController = require('../Controllers/User.controller')
 
 router.get('/', UserController.getAllUser )
 router.get('/getId', UserController.getUserByEmail)
-router.patch('/update/:id', UserController.updateUser)
+router.patch('/updateDistance', UserController.updateUserDistance)
+router.patch('/settings', UserController.updateSettings)
 
 module.exports = router

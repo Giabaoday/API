@@ -20,7 +20,6 @@ const passwordSchema = Joi.object({
 
 })
 
-
 const createPotholeSchema = Joi.object({
     location: Joi.object({
         address: Joi.string().required(),
@@ -44,11 +43,24 @@ const createPotholeSchema = Joi.object({
     image: Joi.string().uri().allow('').optional()
 })
 
+const updateUserDistanceSchema = Joi.object({
+    distance_traveled: Joi.number().min(0).required()
+})
+
+const updateSettingsSchema = Joi.object({
+    username: Joi.string().optional(),
+    birthday: Joi.date().optional(),
+    country: Joi.string().optional(),
+    currentPassword: Joi.string().min(4).optional(),
+    newPassword: Joi.string().min(4).optional()
+}).with('newPassword', 'currentPassword')  // Nếu có newPassword thì phải có currentPassword
 
 module.exports = {
     authRegisterSchema,
     authLoginSchema,
     emailSchema,
     passwordSchema,
-    createPotholeSchema
+    createPotholeSchema,
+    updateUserDistanceSchema,
+    updateSettingsSchema
 }

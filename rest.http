@@ -132,8 +132,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1ODM5M
 
 
 ### Dashboard chart
-GET http://47.129.31.47:3000/dashboard/dailyChart
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ1MjA1NDIsImV4cCI6MTczNDYwNjk0MiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.hEB0c4XMM9qRHwhi8LyIHEVrC0WDlj8UgnIXkpryIIY
+POST  http://localhost:3000/dashboard/dailyChart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2NzEyMDQsImV4cCI6MTczNDc1NzYwNCwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.rVw1os1CMPfUI04X6WbRC6nAsgeiBj-lWagwKTVf4_s
 Content-Type: application/json
 
 {

@@ -7,6 +7,7 @@ const User = require('../Models/User.model')
 router.get('/me', UserController.getCurrentUser)
 router.get('/', UserController.getAllUser )
 router.get('/getId', UserController.getUserByEmail)
+router.post('/getUser', UserController.getUserById)
 router.patch('/updateDistance', UserController.updateUserDistance)
 router.patch('/settings', UserController.updateSettings)
 

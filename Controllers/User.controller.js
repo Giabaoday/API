@@ -23,6 +23,17 @@ module.exports = {
         }
     },
 
+    getUserById: async (req, res, next) => {
+        try {
+            const userId = req.body.userId
+            const user = await User.findById(userId, { __v: 0, password: 0 })
+            if (!user) throw createError.NotFound("User not registered")
+            res.send(user)
+        } catch (error) {
+            next(error)
+        }
+    },
+    
     getUserByEmail: async (req, res, next) => {
         try {
             const result = await emailSchema.validateAsync(req.body)

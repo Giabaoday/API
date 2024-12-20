@@ -10,4 +10,5 @@ router.post('/addPothole', MapController.add)
 
 router.get('/getAllPothole', MapController.getAllPothole)
 
+router.post('/filter', MapController.getPotholesByFilter)
 module.exports = router

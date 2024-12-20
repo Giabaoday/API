@@ -56,7 +56,7 @@ const PotholeSchema = new Schema({
 
     reportedBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
         required: true
     }
 }, { timestamps: true })

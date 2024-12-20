@@ -82,6 +82,71 @@ module.exports = {
         }
     },
 
+    getPotholesByFilter: async (req, res, next) => {
+        try {
+            const {
+                severity,            // ['Low', 'Medium', 'High']
+                dimension,          // ['Compact', 'Average', 'Large']
+                depth,             // ['Shallow', 'Noticeable', 'Deep']
+                shape,             // ['Uniform', 'Uneven', 'Jagged']
+            } = req.body;
+    
+            // Build filter query
+            let query = {};
+    
+            // Add severity filter
+            if (severity && severity.length > 0) {
+                query['severity.level'] = { $in: severity };
+            }
+    
+            // Add dimension filter
+            if (dimension && dimension.length > 0) {
+                query['description.dimension'] = { $in: dimension };
+            }
+    
+            // Add depth filter
+            if (depth && depth.length > 0) {
+                query['description.depth'] = { $in: depth };
+            }
+    
+            // Add shape filter
+            if (shape && shape.length > 0) {
+                query['description.shape'] = { $in: shape };
+            }
+    
+            // Execute query with populated user info
+            const potholes = await Pothole.find(query)
+                .populate('reportedBy', 'username -_id')
+                .sort({ createdAt: -1 });
+    
+            // Calculate metadata
+            const metadata = {
+                total: potholes.length,
+                severityCounts: potholes.reduce((acc, p) => {
+                    acc[p.severity.level] = (acc[p.severity.level] || 0) + 1;
+                    return acc;
+                }, {}),
+                appliedFilters: {
+                    severity,
+                    dimension,
+                    depth,
+                    shape
+                }
+            };
+    
+            res.json({
+                status: 'success',
+                data: {
+                    potholes,
+                    metadata
+                }
+            });
+    
+        } catch (error) {
+            next(error);
+        }
+    },
+
     getTile: async (req, res, next) => {
         try {
             const { z, x, y } = req.params;

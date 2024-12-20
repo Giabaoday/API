@@ -54,12 +54,21 @@ Content-Type: application/json
 }
 
 ### Get user by Id
-POST  http://localhost:3000/user/getUser
+POST  http://47.129.31.47:3000/user/getUser
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2NzcwOTYsImV4cCI6MTczNDc2MzQ5NiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.QsnerK4bnrkboIjEVc-K_yqL4ndak6QJZck1w7Xlgew
 Content-Type: application/json
 
 {
     "userId": "6725d3e3f0fb3cfd86008cf7"
+}
+
+### send report
+POST http://localhost:3000/user/sendReport
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQ2NzcwOTYsImV4cCI6MTczNDc2MzQ5NiwiYXVkIjoiNjcyNWQzZTNmMGZiM2NmZDg2MDA4Y2Y3IiwiaXNzIjoiMjI1MjAxMjBAZ20udWl0LmVkdS52biJ9.QsnerK4bnrkboIjEVc-K_yqL4ndak6QJZck1w7Xlgew
+Content-Type: application/json
+
+{
+    "description": "Write something here..."
 }
 
 ###

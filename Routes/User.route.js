@@ -10,5 +10,6 @@ router.get('/getId', UserController.getUserByEmail)
 router.post('/getUser', UserController.getUserById)
 router.patch('/updateDistance', UserController.updateUserDistance)
 router.patch('/settings', UserController.updateSettings)
+router.post('/sendReport', UserController.sendReport)
 
 module.exports = router

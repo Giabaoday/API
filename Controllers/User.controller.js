@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const User = require('../Models/User.model')
 const { emailSchema, passwordSchema, updateUserDistanceSchema, updateSettingsSchema } = require('../helpers/validation_schema')
 const bcrypt = require('bcrypt')
+const nodemailer = require('nodemailer')
 
 module.exports = {
     getCurrentUser: async (req, res, next) => {
@@ -125,6 +126,55 @@ module.exports = {
     
         } catch (error) {
             if (error.isJoi === true) error.status = 422
+            next(error)
+        }
+    },
+    
+    sendReport: async (req, res, next) => {
+        try {
+            const { description } = req.body
+            if (!description) {
+                throw createError.BadRequest('Description is required')
+            }
+
+            const userId = req.payload.aud
+            const user = await User.findById(userId)
+            if (!user) throw createError.NotFound('User not found')
+
+            // Tạo transporter
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASSWORD
+                }
+            })
+
+            await transporter.sendMail({
+                from: process.env.EMAIL_USER,
+                to: '22520855@gm.uit.edu.vn',
+                subject: 'New Problem Report from User',
+                html: `
+                    <h2>Problem Report</h2>
+                    <p><strong>From User:</strong> ${user.email}</p>
+                    <p><strong>Description:</strong></p>
+                    <p>${description}</p>
+                    <br>
+                    <p><i>Sent from PotholeDetection App</i></p>
+                `
+            })
+
+            await transporter.close();
+
+            res.json({
+                status: 'success',
+                message: 'Report sent successfully'
+            })
+
+        } catch (error) {
+            if (transporter) {
+                await transporter.close();
+            }
             next(error)
         }
     }
